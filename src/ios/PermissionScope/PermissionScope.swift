@@ -174,7 +174,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
         baseView.frame = view.frame
         baseView.addSubview(contentView)
         if backgroundTapCancels {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(cancel))
+            let tap = UITapGestureRecognizer(target: self, action: "cancel")
             tap.delegate = self
             baseView.addGestureRecognizer(tap)
         }
@@ -203,7 +203,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
 
         // close button
         closeButton.setTitle("Close".localized, forState: .Normal)
-        closeButton.addTarget(self, action: #selector(cancel), forControlEvents: .TouchUpInside)
+        closeButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
 
         contentView.addSubview(closeButton)
 
@@ -583,7 +583,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
                             object: nil)
         notifCenter
             .addObserver(self,
-                         selector: #selector(finishedShowingNotificationPermission),
+                         selector: "finishedShowingNotificationPermission",
                          name: UIApplicationDidBecomeActiveNotification, object: nil)
         notificationTimer?.invalidate()
     }
@@ -641,9 +641,9 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
                 .first { $0 is NotificationsPermission } as? NotificationsPermission
             let notificationsPermissionSet = notificationsPermission?.notificationCategories
 
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showingNotificationPermission), name: UIApplicationWillResignActiveNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "showingNotificationPermission", name: UIApplicationWillResignActiveNotification, object: nil)
 
-            notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(finishedShowingNotificationPermission), userInfo: nil, repeats: false)
+            notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "finishedShowingNotificationPermission", userInfo: nil, repeats: false)
 
             UIApplication.sharedApplication().registerUserNotificationSettings(
                 UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge],
@@ -1161,7 +1161,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
         alert.addAction(UIAlertAction(title: deniedDefaultActionTitle,
             style: .Default,
             handler: { action in
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.appForegroundedAfterSettings), name: UIApplicationDidBecomeActiveNotification, object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "self.appForegroundedAfterSettings", name: UIApplicationDidBecomeActiveNotification, object: nil)
 
                 let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
                 UIApplication.sharedApplication().openURL(settingsUrl!)
@@ -1200,7 +1200,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
         alert.addAction(UIAlertAction(title: disabledDefaultActionTitle,
             style: .Default,
             handler: { action in
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.appForegroundedAfterSettings), name: UIApplicationDidBecomeActiveNotification, object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "self.appForegroundedAfterSettings", name: UIApplicationDidBecomeActiveNotification, object: nil)
 
                 let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
                 UIApplication.sharedApplication().openURL(settingsUrl!)
