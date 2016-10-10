@@ -40,7 +40,7 @@ import CoreLocation
       "Bluetooth": { self.pscope!.requestBluetooth() },
       "Motion": { self.pscope!.requestMotion() }
     ]
-    
+
    self.hasMethods = [
       "Notifications": { self.pscope!.statusNotifications() },
       "LocationInUse": { self.pscope!.statusLocationInUse() },
@@ -201,7 +201,7 @@ import CoreLocation
     let result = self.hasMethods![type]!()
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
-       case .Unkown, .Unauthorized:
+       case .Unknown, .Unauthorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
          break
        case .Authorized:
@@ -213,7 +213,7 @@ import CoreLocation
     self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
   }
 
-  
+
   func requestPermission(command: CDVInvokedUrlCommand) {
     let type = command.argumentAtIndex(0) as! String
 
