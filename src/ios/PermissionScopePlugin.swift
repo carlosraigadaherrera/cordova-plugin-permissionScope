@@ -5,7 +5,7 @@ import CoreLocation
   private let LOG_TAG = "PermissionScopePlugin"
   private var permissionMethods: [String: () -> NSObject]?
   private var requestMethods: [String: () -> Void]?
-  private var hasMethods: [String: () -> Any]?
+  private var hasMethods: [String: () -> PermissionType]?
   private var defaultConfig: [String: Any]?
   private var pscope: PermissionScope?
 
@@ -201,10 +201,10 @@ import CoreLocation
     let result = self.hasMethods![type]!()
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
-       case PermissionType.Unknown, PermissionType.Unauthorized:
+       case .Unknown, .Unauthorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
          break
-       case PermissionType.Authorized:
+       case .Authorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
         break
        default:
