@@ -199,8 +199,7 @@ import Foundation
     var result = self.hasMethods![type]!()
     let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
-       case .Unauthorized:
-       case .Unkown:
+       case .Unkown, .Unauthorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
          break
        case .Authorized:
@@ -208,7 +207,6 @@ import Foundation
         break
        default:
         pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
-        break
     }
     self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
   }
