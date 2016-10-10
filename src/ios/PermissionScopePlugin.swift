@@ -211,7 +211,7 @@ import Foundation
     }
     self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
   }
-}
+
   
   func requestPermission(command: CDVInvokedUrlCommand) {
     let type = command.argumentAtIndex(0) as! String
