@@ -6,3 +6,4 @@ tests/app/*
 !tests/app/www
 !tests/app/config.xml
 node_modules
+/nbproject/
