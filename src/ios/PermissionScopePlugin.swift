@@ -38,6 +38,20 @@ import Foundation
       "Bluetooth": { self.pscope!.requestBluetooth() },
       "Motion": { self.pscope!.requestMotion() }
     ]
+    
+   self.hasMethods = [
+      "Notifications": { self.pscope!.hasNotifications() },
+      "LocationInUse": { self.pscope!.hasLocationInUse() },
+      "LocationAlways": { self.pscope!.hasLocationAlways() },
+      "Contacts": { self.pscope!.hasContacts() },
+      "Events": { self.pscope!.hasEvents() },
+      "Microphone": { self.pscope!.hasMicrophone() },
+      "Camera": { self.pscope!.hasCamera() },
+      "Photos": { self.pscope!.hasPhotos() },
+      "Reminders": { self.pscope!.hasReminders() },
+      "Bluetooth": { self.pscope!.hasBluetooth() },
+      "Motion": { self.pscope!.hasMotion() }
+    ]
 
     self.defaultConfig = [
       "headerLabel": self.pscope?.headerLabel.text,
