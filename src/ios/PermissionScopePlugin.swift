@@ -202,10 +202,13 @@ import Foundation
        case .Unauthorized:
        case .Unkown:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         break
        case .Authorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+        break
        default:
-        pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)          
+        pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+        break
     }
     self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
   }
