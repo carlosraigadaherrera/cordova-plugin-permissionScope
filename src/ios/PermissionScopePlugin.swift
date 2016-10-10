@@ -5,7 +5,7 @@ import CoreLocation
   private let LOG_TAG = "PermissionScopePlugin"
   private var permissionMethods: [String: () -> NSObject]?
   private var requestMethods: [String: () -> Void]?
-  private var hasMethods: [String: () -> Void]?
+  private var hasMethods: [String: () -> NSObject]?
   private var defaultConfig: [String: Any]?
   private var pscope: PermissionScope?
 
