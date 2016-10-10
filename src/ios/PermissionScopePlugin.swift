@@ -40,17 +40,17 @@ import Foundation
     ]
     
    self.hasMethods = [
-      "Notifications": { self.pscope!.hasNotifications() },
-      "LocationInUse": { self.pscope!.hasLocationInUse() },
-      "LocationAlways": { self.pscope!.hasLocationAlways() },
-      "Contacts": { self.pscope!.hasContacts() },
-      "Events": { self.pscope!.hasEvents() },
-      "Microphone": { self.pscope!.hasMicrophone() },
-      "Camera": { self.pscope!.hasCamera() },
-      "Photos": { self.pscope!.hasPhotos() },
-      "Reminders": { self.pscope!.hasReminders() },
-      "Bluetooth": { self.pscope!.hasBluetooth() },
-      "Motion": { self.pscope!.hasMotion() }
+      "Notifications": { self.pscope!.statusNotifications() },
+      "LocationInUse": { self.pscope!.statusLocationInUse() },
+      "LocationAlways": { self.pscope!.statusLocationAlways() },
+      "Contacts": { self.pscope!.statusContacts() },
+      "Events": { self.pscope!.statusEvents() },
+      "Microphone": { self.pscope!.statusMicrophone() },
+      "Camera": { self.pscope!.statusCamera() },
+      "Photos": { self.pscope!.statusPhotos() },
+      "Reminders": { self.pscope!.statusReminders() },
+      "Bluetooth": { self.pscope!.statusBluetooth() },
+      "Motion": { self.pscope!.statusMotion() }
     ]
 
     self.defaultConfig = [
@@ -192,6 +192,27 @@ import Foundation
     self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
   }
 
+  func hasPermission(command: CDVInvokedUrlCommand) {
+    let type = command.argumentAtIndex(0) as! String
+
+    self.pscope!.viewControllerForAlerts = self.viewController
+    var result = self.hasMethods![type]!()
+    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+    switch result {
+       case .Unauthorized:
+       case .Unkown:
+         pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
+         break
+       case .Authorized:
+         pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+         break;
+       default:
+        pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)          
+    }
+    self.commandDelegate!.sendPluginResult(pluginResult, callbackId: command.callbackId)
+  }
+}
+  
   func requestPermission(command: CDVInvokedUrlCommand) {
     let type = command.argumentAtIndex(0) as! String
 
