@@ -202,10 +202,8 @@ import Foundation
        case .Unauthorized:
        case .Unkown:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
-         break
        case .Authorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
-         break;
        default:
         pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)          
     }
