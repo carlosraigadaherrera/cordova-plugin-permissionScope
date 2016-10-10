@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 @objc(PermissionScopePlugin) class PermissionScopePlugin: CDVPlugin {
   private let LOG_TAG = "PermissionScopePlugin"
@@ -198,7 +199,7 @@ import Foundation
 
     self.pscope!.viewControllerForAlerts = self.viewController
     var result = self.hasMethods![type]!()
-    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+    var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
        case .Unkown, .Unauthorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
