@@ -198,7 +198,7 @@ import CoreLocation
     let type = command.argumentAtIndex(0) as! String
 
     self.pscope!.viewControllerForAlerts = self.viewController
-    var result = self.hasMethods![type]!()
+    let result = self.hasMethods![type]!()
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
        case .Unkown, .Unauthorized:
