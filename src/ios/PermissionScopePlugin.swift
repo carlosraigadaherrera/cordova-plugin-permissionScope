@@ -201,7 +201,10 @@ import CoreLocation
     let result = self.hasMethods![type]!()
     var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
     switch result {
-       case .Unknown, .Unauthorized:
+       case .Unknown:
+         pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+         break
+       case .Unauthorized:
          pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
          break
        case .Authorized:
